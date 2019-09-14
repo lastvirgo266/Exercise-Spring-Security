@@ -1,1 +1,1 @@
-# -Exercise-Spring-Security
+# Exercise-Spring-Security
