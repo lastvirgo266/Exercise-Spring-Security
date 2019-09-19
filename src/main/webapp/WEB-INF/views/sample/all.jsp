@@ -10,5 +10,8 @@
 
 <h1>all</h1>
 
+
+<a href="/Security/customLogout">Logout</a>
+
 </body>
 </html>

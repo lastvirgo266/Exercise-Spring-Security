@@ -10,5 +10,7 @@
 
 <h1>member</h1>
 
+<a href="/Security/customLogout">Logout</a>
+
 </body>
 </html>

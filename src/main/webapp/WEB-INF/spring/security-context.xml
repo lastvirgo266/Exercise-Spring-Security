@@ -6,15 +6,25 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
+	<bean id="customAccessDenied" class="org.zerock.security.CustomAccessDeniedHandler"></bean>
+	<bean id="customLoginSuccess" class="org.zerock.security.CustomLoginSuccessHandler"></bean>
+
 	<!-- root context를 붙여서 쓸 필요는 없다! -->
 	<security:http auto-config ="true" use-expressions="true">
 		<security:intercept-url pattern="/sample/all"	access="permitAll"/>
 		<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
 		<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')"/>
 	
-		<security:form-login/>
+		<!-- <security:form-login/> -->
 		
-		<security:access-denied-handler error-page="/accessError/"/>
+		<security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess" />
+		
+	<!-- 	<security:access-denied-handler error-page="/accessError/"/> -->
+	<!--  errorpage 속성 대신 CustomAccessDeniedHandler를 빈으로 등록해서 사용함 -->
+	<security:access-denied-handler ref="customAccessDenied"/>
+	
+	<security:logout logout-url="/customLogout" invalidate-session="true"/>
+
 	
 	</security:http>
 	
